@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 //import Modal from 'react-modal';
 import axios from 'axios'
+import BASE_URL from '../baseUrl';
 import 'react-toastify/dist/ReactToastify.css';
 import Button from 'react-bootstrap/Button';
 
@@ -91,7 +92,7 @@ const NewProduct = () => {
                                         "Authorization": `Bearer ${tokenStr}`
                                 }
                         }
-                        const res = await axios.post('http://localhost:2000/api/addnewProduct', allFormData, config)
+                        const res = await axios.post(`${BASE_URL}/addnewProduct`, allFormData, config)
                         // console.log("add new product api response ] " + res)
                         setShow(false);
 
@@ -105,7 +106,7 @@ const NewProduct = () => {
         const getAllCategory = async () => {
 
                 try {
-                        const res = await axios.get('http://localhost:2000/api/getAllCategory')
+                        const res = await axios.get(`${BASE_URL}/getAllCategory`)
                         //  console.log("get all category api response  " + JSON.stringify(res.data.data.data))
                         setCategoryData(res.data.data.data);
                 }
@@ -118,7 +119,7 @@ const NewProduct = () => {
         const getAllAPIData = async () => {
 
                 try {
-                        const res = await axios.get('https://fakestoreapi.in/api/products?limit=150')
+                        const res = await axios.get(`${BASE_URL}/products?limit=150`)
                         // console.log("get all api data  response  " + JSON.stringify(res.data.products))
                         setAllApiData(res.data.products);
                 }

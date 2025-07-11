@@ -1,6 +1,7 @@
 import { React, useState } from 'react';
 //import Modal from 'react-modal';
 import axios from 'axios'
+import BASE_URL from '../baseUrl';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Button from 'react-bootstrap/Button';
@@ -35,7 +36,7 @@ function NewEmployee() {
                     "Authorization": `Bearer ${tokenStr}`
                 }
             }
-            const res = await axios.post('http://localhost:2000/api/addnewEmployee', employee, config)
+            const res = await axios.post(`${BASE_URL}/addnewEmployee`, employee, config)
 
 
 

@@ -2,6 +2,7 @@
 import { useSelector } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
+import BASE_URL from '../../baseUrl';
 
 function SingleProductDetailPage({ isOpen, handleClose, productId }) {
     const data = useSelector((state) => state.allData.data);
@@ -24,7 +25,7 @@ function SingleProductDetailPage({ isOpen, handleClose, productId }) {
                     }]
                 };
                 console.log("res from single product detail page  = " + JSON.stringify(payload))
-                const res = await axios.post('http://localhost:2000/api/addCart', payload, config)
+                const res = await axios.post(`${BASE_URL}/addCart`, payload, config)
                 //console.log("res from single product detail page  = " + JSON.stringify(res))
             }
             catch (error) {

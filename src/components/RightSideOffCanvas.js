@@ -4,8 +4,6 @@ import { unSetIsAuth } from '../redux/slice/AuthSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCanvasState } from '../redux/slice/RightSideOffCanvasSlice';
 
-
-
 const RightSideOffCanvas = () => {
 
     const dispatch = useDispatch();

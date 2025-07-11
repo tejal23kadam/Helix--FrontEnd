@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import BASE_URL from '../baseUrl';
 import { setToast } from '../redux/slice/toastSlice';
 
 function RegistrationPage({ setSignIn, handleClose }) {
@@ -67,7 +68,7 @@ function RegistrationPage({ setSignIn, handleClose }) {
     };
 
     try {
-      const res = await axios.post('http://localhost:2000/api/addUser', allFormData, config);
+      const res = await axios.post(`${BASE_URL}/addUser`, allFormData, config);
       dispatch(setToast({ message: res.data.data.message, type: "success" }));
       handleClose(); // close modal on success
       setSignIn(false);

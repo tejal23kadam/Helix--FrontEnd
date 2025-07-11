@@ -6,6 +6,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import CloseButton from 'react-bootstrap/CloseButton';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
+import BASE_URL from '../baseUrl';
 import userImage from '../images/User-Profile.png'
 import { setToast } from '../redux/slice/toastSlice';
 
@@ -47,7 +48,7 @@ function UserHeader() {
 
         const CheckStudent = async () => {
                 try {
-                        const res = await axios.post('http://localhost:2000/api/validateUser', studentData)
+                        const res = await axios.post(`${BASE_URL}/validateUser`, studentData)
 
                         if (res.data.status) {
                                 profileImg = res.data.data.user.image[0].path

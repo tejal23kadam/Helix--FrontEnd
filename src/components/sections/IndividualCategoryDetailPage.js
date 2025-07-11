@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Pagination from '../paginationComponent/Pagination';
 import SingleProductDetailPage from './SingleProductDetailPage';
 import axios from 'axios';
+import BASE_URL from '../../baseUrl'
 import Header from '../Header';
 import { useNavigate } from "react-router-dom";
 
@@ -105,10 +106,7 @@ function IndividualCategoryDetailPageNew(props) {
                         quantity: 1,
                     }]
                 };
-
-
-                const res = await axios.post('http://localhost:2000/api/addCart', payload, config)
-                //  const res = await axios.post('http://localhost:2000/api/updateOrder', payload, config)
+                const res = await axios.post(`${BASE_URL}/addCart`, payload, config)                
                 console.log("response for add cart api  " + JSON.stringify(res))
             }
             catch (error) {
@@ -184,7 +182,7 @@ function IndividualCategoryDetailPageNew(props) {
     const updateQuantity = async (productId, change) => {
         try {
             console.log("Sending quantity change:", change);
-            const res = await axios.put(`http://localhost:2000/api/updateProductQuantity`, {
+            const res = await axios.put(`${BASE_URL}/updateProductQuantity`, {
                 userId: user._id,
                 productId: productId,
                 change: change,

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToProductIDFilter } from '../../redux/slice/ProductIdSlice';
 import axios from 'axios';
+import BASE_URL from '../../baseUrl';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -49,7 +50,7 @@ function TrendingItems() {
                     quantity: 1,
                 }]
             };
-            const res = await axios.post('http://localhost:2000/api/addCart', payload, config)
+            const res = await axios.post(`${BASE_URL}/addCart`, payload, config)
             console.log("response for add cart api  " + JSON.stringify(res))
             setButtonText(prev => ({ ...prev, [productId]: { disabled: true, text: 'PRODUCT ADDED!!' } }));
         }

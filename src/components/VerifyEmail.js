@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import BASE_URL from '../baseUrl';
 
 function VerifyEmail() {
     const { token } = useParams();
@@ -9,7 +10,7 @@ function VerifyEmail() {
     useEffect(() => {
         const verifyEmail = async () => {
             try {
-                const response = await axios.get(`http://localhost:2000/api/verify-email/${token}`);
+                const response = await axios.get(`${BASE_URL}/verify-email/${token}`);
                 setMessage(response.data.message);
             } catch (error) {
                 setMessage('Verification failed. The link may be expired or invalid.');

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import axios from 'axios'
+import BASE_URL from '../baseUrl';
 import { setCartCount } from '../redux/slice/CartSlice';
 import { unSetIsAuth } from '../redux/slice/AuthSlice';
 import LoginModal from './LoginModal';
@@ -59,7 +60,7 @@ function Header() {
     const getUserCartDetail = async () => {
         try {
 
-            const res = await axios.get('http://localhost:2000/api/getUserCartDetail', {
+            const res = await axios.get(`${BASE_URL}/getUserCartDetail`, {
                 params: {
                     userId: user._id
                 }

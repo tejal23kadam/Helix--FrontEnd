@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setIsAuth } from '../redux/slice/AuthSlice';
 import { useEffect } from 'react';
 import axios from 'axios';
+import BASE_URL from '../baseUrl';
 
 const AuthProvider = ({ children }) => {
         const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const AuthProvider = ({ children }) => {
                                       Authorization: `Bearer ${token}`
                                 }
                         }
-                        const res = await axios.post('http://localhost:2000/api/authVerify', {}, config)
+                        const res = await axios.post(`${BASE_URL}/authVerify`, {}, config)
                         
                         if (res.data.status === true) {
                                 dispatch(setIsAuth(res.data.data.data));

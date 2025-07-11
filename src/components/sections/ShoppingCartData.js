@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import CheckOutModal from './CheckOutModal';
+import BASE_URL from '../../baseUrl'
 import axios from 'axios';
 import Header from '../Header';
 
@@ -26,7 +27,7 @@ function ShoppingCartData() {
         console.log("thi is called")
         try {
 
-            const res = await axios.get('http://localhost:2000/api/getUserCartDetail', {
+            const res = await axios.get(`${BASE_URL}/getUserCartDetail`, {
                 params: {
                     userId: user._id
                 }
@@ -54,7 +55,7 @@ function ShoppingCartData() {
                 userId: user._id,
                 productId: id
             };
-            const res = await axios.post('http://localhost:2000/api/removeProductFromCart', payload)
+            const res = await axios.post(`${BASE_URL}/removeProductFromCart`, payload)
             console.log("remove product from cart" + JSON.stringify(res));
             getUserCartDetail();
         }
@@ -71,7 +72,7 @@ function ShoppingCartData() {
 
 
             console.log("Sending quantity change:", change);
-            const res = await axios.put(`http://localhost:2000/api/updateProductQuantity`, {
+            const res = await axios.put(`${BASE_URL}/updateProductQuantity`, {
                 userId: user._id,
                 productId: productId,
                 change: change,

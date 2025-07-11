@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import BASE_URL from '../baseUrl';
 
 
 
@@ -9,7 +10,7 @@ function ForgotPassword() {
     const [msg, setMsg] = useState('');
 
     const handleSubmit = async () => {
-        const res = await axios.post('http://localhost:2000/api/forget-password', { email });
+        const res = await axios.post(`${BASE_URL}/forget-password`, { email });
         setMsg(res.data.message);
     };
 

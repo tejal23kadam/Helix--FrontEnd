@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react';
 //import Modal from 'react-modal';
 import axios from 'axios'
+import BASE_URL from '../baseUrl';
 import 'react-toastify/dist/ReactToastify.css';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -27,7 +28,7 @@ const NewCategory = () => {
 
                                 }
                         }
-                        const res = await axios.post('http://localhost:2000/api/addnewCategory', formdata, config)
+                        const res = await axios.post(`${BASE_URL}/addnewCategory`, formdata, config)
                         console.log("add new category api response  " + res)
                         setShow(false);
 

@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import BASE_URL from '../baseUrl';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { setIsAuth } from '../redux/slice/AuthSlice';
@@ -22,7 +23,7 @@ function LoginPage() {
 
     const CheckStudent = async () => {
         try {
-            const res = await axios.post('http://localhost:2000/api/validateUser', studentData)
+            const res = await axios.post(`${BASE_URL}/validateUser`, studentData)
             console.log("res= ", res);
             if (res.data.status) {
                 localStorage.setItem("token", res.data.data.token)

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 //import { addToCart } from '../sliceComponent/CartSlice';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios'
+import BASE_URL from '../baseUrl';
 import { useNavigate } from "react-router-dom";
 import { setToast } from '../redux/slice/toastSlice'
 import { setIsAuth } from '../redux/slice/AuthSlice';
@@ -30,7 +31,7 @@ const LoginModal = ({ isOpen, handleClose }) => {
 
     const checkUser = async () => {
         try {
-            const res = await axios.post('http://localhost:2000/api/validateUser', formdata)
+            const res = await axios.post(`${BASE_URL}/validateUser`, formdata)
             console.log("res = " + res.data.status);
             console.log("formdata = " + JSON.stringify(formdata));
             if (res.data.status) {

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import axios from 'axios';
 import Header from './Header';
+import BASE_URL from '../baseUrl';
 
 
 const CheckoutOrders = ({orderData}) => {
@@ -15,7 +16,7 @@ const CheckoutOrders = ({orderData}) => {
     const getUserOrderDetail = async () => {
         console.log("rhis is called")
         try {
-            const res = await axios.get('http://localhost:2000/api/getUserOrderDetail', {
+            const res = await axios.get(`${BASE_URL}/getUserOrderDetail`, {
                 params: {
                     userId: user._id
                 }

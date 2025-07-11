@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 
 import SingleProductDetailPage from './SingleProductDetailPage';
 import axios from 'axios';
+import BASE_URL from '../../baseUrl'
 import Header from '../Header';
 
 function SearchingResultProducts() {
@@ -85,7 +86,7 @@ function SearchingResultProducts() {
                 };
 
 
-                const res = await axios.post('http://localhost:2000/api/addCart', payload, config)
+                const res = await axios.post(`${BASE_URL}/addCart`, payload, config)
                 //  const res = await axios.post('http://localhost:2000/api/updateOrder', payload, config)
                 console.log("response for add cart api  " + JSON.stringify(res))
             }
@@ -154,7 +155,7 @@ function SearchingResultProducts() {
     const updateQuantity = async (productId, change) => {
         try {
             console.log("Sending quantity change:", change);
-            const res = await axios.put(`http://localhost:2000/api/updateProductQuantity`, {
+            const res = await axios.put(`${BASE_URL}/updateProductQuantity`, {
                 userId: user._id,
                 productId: productId,
                 change: change,

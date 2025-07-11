@@ -2,18 +2,14 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 //import { addToCart } from '../sliceComponent/CartSlice';
 import Modal from 'react-bootstrap/Modal';
+import BASE_URL from '../../baseUrl';
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
 import { setToast } from '../../redux/slice/toastSlice'
-import { deleteAllCart } from '../sliceComponent/CartSlice';
-
 
 function CheckOutModal({ orderData, isOpen, handleClose }) {
 
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-
 
     const initialState = {
         name: '',
@@ -32,7 +28,7 @@ function CheckOutModal({ orderData, isOpen, handleClose }) {
 
     const deleteAllProductFromCart = async () => {
         try {
-            const res = await axios.delete(`http://localhost:2000/api/deleteAllProductFromCart/${user._id}`);
+            const res = await axios.delete(`${BASE_URL}/deleteAllProductFromCart/${user._id}`);
 
             console.log("res from delete all product from cart " + JSON.stringify(res));
         }
@@ -60,7 +56,7 @@ function CheckOutModal({ orderData, isOpen, handleClose }) {
             };
             console.log("payload  here is " + JSON.stringify(payload))
 
-            const res = await axios.post('http://localhost:2000/api/addOrder', payload, config)
+            const res = await axios.post(`${BASE_URL}/addOrder`, payload, config)
             //  const res = await axios.post('http://localhost:2000/api/updateOrder', payload, config)
             console.log("add order api response  " + JSON.stringify(res))
             handleClose();
