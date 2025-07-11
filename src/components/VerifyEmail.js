@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';   
-import BASE_URL from '../baseUrl';
+import axios from 'axios';     
+import BASE_URL from '../baseUrl';    
 
 function VerifyEmail() {
     const { token } = useParams();
@@ -16,7 +16,6 @@ function VerifyEmail() {
                 setMessage('Verification failed. The link may be expired or invalid.');
             }
         };
-
         verifyEmail();
     }, [token]);
 
