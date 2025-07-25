@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Contact() {
-  return (
+  return (  
     <div className='header-main'>
     <h1>this is contact page </h1>
   </div>
