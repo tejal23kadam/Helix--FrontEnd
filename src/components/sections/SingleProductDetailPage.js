@@ -1,8 +1,6 @@
 
 import { useSelector } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
-import axios from 'axios';
-import BASE_URL from '../../baseUrl';
 
 function SingleProductDetailPage({ isOpen, handleClose, productId }) {
     const data = useSelector((state) => state.allData.data);
