@@ -166,7 +166,7 @@ function IndividualCategoryDetailPageNew(props) {
         }
         setFilteredData(tempFilteredData);
     }, [data, brand, filterPrice, filterDiscount,individualBrandData]);
-
+   
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
     if (!data || data.length === 0) return <h1>No data available</h1>;
