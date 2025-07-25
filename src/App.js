@@ -2,7 +2,7 @@ import './App.css';
 import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import RegistrationPage from './components/RegistrationPage';
-import LoginPage from './components/LoginPage';
+
 import Dashboard from './components/Dashboard';
 import Order from './components/Order';
 import Settings from './components/Settings';
@@ -45,7 +45,7 @@ function App() {
     // Fetch data whenever the current page changes
     dispatch(fetchDatasAsync());
 
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <Routes>

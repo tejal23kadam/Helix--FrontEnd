@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import profileImage from '../../src/images/User-Profile.png'
 import { Link, Outlet } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ function Header() {
     const dropdownRef = useRef();
     const user = useSelector((state) => state.auth.user);
 
-    const cart = useSelector((state) => state.cart);
+
 
     const openLoginModal = () => {
         setShowModal(true);
@@ -42,37 +42,38 @@ function Header() {
     };
 
     useEffect(() => {
-        if (user && user._id) {
-            getUserCartDetail();
-        }
-        /*this is the logic for the auto close of the dropdown box on the outside click on the page  */
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setDropDownOpen(false);
             }
         }
+        const getUserCartDetail = async () => {
+            try {
+
+                const res = await axios.get(`${BASE_URL}/getUserCartDetail`, {
+                    params: {
+                        userId: user._id
+                    }
+                })
+                setcartCount1(res.data.data.data.products.length);
+                dispatch(setCartCount(res.data.data.data.products.length));
+
+            }
+            catch (error) {
+                console.log("error = " + error)
+            }
+        }
+
+        if (user && user._id) {
+            getUserCartDetail();
+        }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [user]);
+    }, [user, dispatch,dropdownRef]); // eslint will still complain unless getUserCartDetail is memoized
 
-    const getUserCartDetail = async () => {
-        try {
-
-            const res = await axios.get(`${BASE_URL}/getUserCartDetail`, {
-                params: {
-                    userId: user._id
-                }
-            })
-            setcartCount1(res.data.data.data.products.length);
-            dispatch(setCartCount(res.data.data.data.products.length));
-
-        }
-        catch (error) {
-            console.log("error = " + error)
-        }
-    }
 
 
 
@@ -248,11 +249,11 @@ function Header() {
                                                         </Link>
                                                     </div>
 
-                                                    
+
                                                 </li>
                                                 {/* <li className="nav-item"><Link to="/contactUs">Contact Us</Link></li> */}
                                                 {/* <li className="nav-item"><Link to="/termsAndConditions">Terms & Conditions</Link></li> */}
-                                               
+
                                             </ul>
                                         </nav>
                                     </div>

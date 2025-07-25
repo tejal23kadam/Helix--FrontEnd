@@ -1,13 +1,9 @@
 import { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import CloseButton from 'react-bootstrap/esm/CloseButton';
-import { setCanvasState } from '../redux/slice/RightSideOffCanvasSlice';
-import RightSideOffCanvas from './RightSideOffCanvas';
-import BottomNavbar from './BottomNavbar';
-import { addToCategoryFilter } from '../redux/slice/CategoryFilterSlice';
 
 
 function AdminHeader(props) {
@@ -16,13 +12,10 @@ function AdminHeader(props) {
     const handleClose = () => setShow(!show);
     const [visibleSearchBar, setVisibleSearchBar] = useState(false);
     const [activeLink, setActiveLink] = useState("Dashboard");
-    const dispatch = useDispatch();
+
 
     const user = useSelector((state) => state.auth.user);
 
-    const handleRightShow = () => {
-        dispatch(setCanvasState())
-    }
 
     return (
         <div>
