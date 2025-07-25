@@ -22,7 +22,7 @@ function IndividualCategoryDetailPageNew(props) {
     let [filterPrice, setFilterPrice] = useState(null);
     let [filteredData, setFilteredData] = useState(data);
     const [showModal, setShowModal] = useState(false);
-    const dispatch = useDispatch();
+  
     const [activePriceColor, setActivePriceColor] = useState(null);
     const [activeDiscountColor, setActiveDiscountColor] = useState(null);
     const user = useSelector((state) => state.auth.user);
@@ -136,15 +136,15 @@ function IndividualCategoryDetailPageNew(props) {
         });
     };
 
-    const [searchVal, setSearchVal] = useState("");
-    const handleSearchClick = () => {
-        console.log("search val  = " + searchVal);
-        if (searchVal === "") { setFilteredData(individualBrandData); return; }
+  
+    // const handleSearchClick = () => {
+    //     console.log("search val  = " + searchVal);
+    //     if (searchVal === "") { setFilteredData(individualBrandData); return; }
 
-        const filterBySearch = filteredData.filter(item => item.brand.toLowerCase().includes(searchVal.toLowerCase()))
-        // const tempFilteredData = tempFilteredData.filter(data => data.brand.toLowerCase().includes(brand.toLowerCase()));
-        setFilteredData(filterBySearch);
-    }
+    //     const filterBySearch = filteredData.filter(item => item.brand.toLowerCase().includes(searchVal.toLowerCase()))
+    //     // const tempFilteredData = tempFilteredData.filter(data => data.brand.toLowerCase().includes(brand.toLowerCase()));
+    //     setFilteredData(filterBySearch);
+    // }
 
     useEffect(() => {
         setFilteredData(data);
@@ -165,7 +165,7 @@ function IndividualCategoryDetailPageNew(props) {
             tempFilteredData = tempFilteredData.filter((data) => data.discount >= filterDiscount);
         }
         setFilteredData(tempFilteredData);
-    }, [data, brand, filterPrice, filterDiscount]);
+    }, [data, brand, filterPrice, filterDiscount,individualBrandData]);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;

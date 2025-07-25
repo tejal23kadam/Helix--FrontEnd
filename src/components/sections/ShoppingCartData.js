@@ -46,7 +46,7 @@ function ShoppingCartData() {
         if (user && user._id) {
             getUserCartDetail();
         }
-    }, [user]);
+    }, [user,getUserCartDetail]);
 
     const removeProductFromCart = async (id) => {
         console.log("this is id " + id);

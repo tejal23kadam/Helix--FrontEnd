@@ -7,7 +7,7 @@ import { addToCategoryFilter } from '../../redux/slice/CategoryFilterSlice';
 const NavBar = () => {
 
     const dispatch = useDispatch();
-    const cart = useSelector((state) => state.cart);
+   
 
     return (
         <div className="container">

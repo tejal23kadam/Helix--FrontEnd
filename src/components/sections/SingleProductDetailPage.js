@@ -25,7 +25,7 @@ function SingleProductDetailPage({ isOpen, handleClose, productId }) {
                     }]
                 };
                 console.log("res from single product detail page  = " + JSON.stringify(payload))
-                const res = await axios.post(`${BASE_URL}/addCart`, payload, config)
+                //const res = await axios.post(`${BASE_URL}/addCart`, payload, config)
                 //console.log("res from single product detail page  = " + JSON.stringify(res))
             }
             catch (error) {
